@@ -2,7 +2,7 @@ public class Printer {
 
     private static String queue = "";
     private static int pendingPagesCount = 0;
-    private static int countPrintedPages;
+    private static int countPrintedPages = 0;
 
     public static void main(String[] args) {
         append("Введение");
@@ -28,7 +28,7 @@ public class Printer {
         return pendingPagesCount;
     }
     public static int getCountPrintedPages() {
-        return pendingPagesCount;
+        return countPrintedPages;
     }
 
     public static void clear() {
