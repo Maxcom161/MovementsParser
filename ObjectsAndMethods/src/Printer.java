@@ -41,8 +41,9 @@ public class Printer {
             System.out.println("Отсутствуют документы в очереди на печать!!!");
         } else {
             System.out.println(queue);
+            countPrintedPages=countPrintedPages + pendingPagesCount;
             System.out.println("Общее количество страниц ожидающих печать: " + getPendingPagesCount());
-            System.out.println("Количество напечатанных страниц: " + getCountPrintedPages());
+            System.out.println("Количество напечатанных страниц: " + countPrintedPages);
             clear();
         }
     }
