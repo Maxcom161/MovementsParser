@@ -32,7 +32,10 @@ public class Printer {
     }
 
     public static void clear() {
+
         queue = "";
+        pendingPagesCount = 0;
+
     }
 
     public static void print(String loading) {
