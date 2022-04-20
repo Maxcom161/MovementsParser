@@ -1,15 +1,16 @@
 public class Country {
 
-
     private String name;
     private int population;
     private double squareInKm2;
     private String capital;
-    private boolean isAccessToTheSea;
+    private boolean AccessToTheSea;
+
 
     public Country(String name) {
         this.name = name;
     }
+
 
     public String getName() {
         return name;
@@ -44,13 +45,18 @@ public class Country {
     }
 
     public boolean isAccessToTheSea() {
-        return isAccessToTheSea;
+        return AccessToTheSea;
     }
 
     public void setAccessToTheSea(boolean accessToTheSea) {
-        isAccessToTheSea = accessToTheSea;
+        AccessToTheSea = accessToTheSea;
     }
+
+
+
 }
+
+
 
 
 
