@@ -3,26 +3,23 @@ public class Dimensions {
     private final double length;
     private final double width;
     private final double height;
-    private double volume = 0;
 
-    public Dimensions(double length, double width, double height, double volume) {
+    public Dimensions(double length, double width, double height) {
         this.length = length;
         this.width = width;
         this.height = height;
-        this.volume = volume;
     }
 
-
     public Dimensions setLength(double length) {
-        return new Dimensions(length, width, height, 0);
+        return new Dimensions(length, width, height);
     }
 
     public Dimensions setWidth(double width) {
-        return new Dimensions(length, width, height, 0);
+        return new Dimensions(length, width, height);
     }
 
     public Dimensions setHeight(double height) {
-        return new Dimensions(length, width, height, 0);
+        return new Dimensions(length, width, height);
     }
 
 
@@ -36,10 +33,8 @@ public class Dimensions {
         return height;
     }
 
-    public void getVolume() {
-        volume = height * width * length / 1000000; // m3
-        return;
-
+    public double getVolume() {
+        return height * width * length / 1000000; // m3
     }
 
     public String toString() {
@@ -47,8 +42,6 @@ public class Dimensions {
                 "длина - " + length + "см." +
                 " ширина - " + width + "см." +
                 " высота - " + height + "см." +")." +
-                " Объем груза - " + volume + " куб.м.";
+                " Объем груза - " + getVolume() + " куб.м.";
     }
-
-
 }

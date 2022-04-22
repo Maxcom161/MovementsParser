@@ -1,6 +1,5 @@
 public class ParametersCargo {
 
-
     private final Dimensions dimensions;
     private final double weight;
     private final String deliveryAddress;
@@ -32,7 +31,6 @@ public class ParametersCargo {
     public double getWeight() {
         return weight;
     }
-
 
     public ParametersCargo setWeight(double weight) {
         return new ParametersCargo(dimensions, weight, deliveryAddress,
@@ -67,7 +65,5 @@ public class ParametersCargo {
                 "Можно переворачивать:  " + canBeTurnedOver + "\n" +
                 "Регистрационный номер: " + numberRegistration + "\n" +
                 "Хрупкий груз: " + fragileCargo;
-
     }
-
 }
