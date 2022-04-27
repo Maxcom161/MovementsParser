@@ -5,8 +5,19 @@ public class Basket {
     private int totalPrice = 0;
     private int limit;
     private double totalWeight = 0;
+    private int amountProduct = 0;
+
+
+    private static int allAmountProduct = 0;
+    private static int allTotalPrice = 0;
+    private static double averagePrice = 0;
+    private static double averageCheck = 0;
+
+
+
 
     public Basket() {
+
         increaseCount(1);
         items = "Список товаров:";
         this.limit = 1000000;
@@ -26,10 +37,37 @@ public class Basket {
     public static int getCount() {
         return count;
     }
-
     public static void increaseCount(int count) {
         Basket.count = Basket.count + count;
     }
+
+
+
+    public static void increaseAllAmountProduct(int count) {
+        Basket.allAmountProduct = Basket.allAmountProduct + count;
+    }
+    public static int getAllAmountProduct() {
+        return allAmountProduct;
+    }
+    public static void increaseAllTotalPrice (int price, int count) {
+        Basket.allTotalPrice = Basket.allTotalPrice + price * count;
+    }
+    public static int getAllTotalPrice() { return allTotalPrice; }
+
+    public static void calculateAveragePrice() {
+        Basket.averagePrice = Basket.allTotalPrice / Basket.allAmountProduct;
+      }
+    public static double getAveragePrice() {
+        return averagePrice;
+    }
+    public static void calculateAverageCheck() {
+        Basket.averageCheck = Basket.getAllTotalPrice() / Basket.getCount();
+    }
+    public static double getAverageCheck() {
+        return averageCheck;
+    }
+
+
 
     public void add(String name, int price) {
         add(name, price, 1, 0.0);
@@ -54,6 +92,12 @@ public class Basket {
                 count + " шт. - " + weight + " кг. - " + price;
         totalPrice = totalPrice + count * price;
         totalWeight = totalWeight + count * weight;
+        amountProduct = amountProduct + count;
+        increaseAllAmountProduct(count);
+        increaseAllTotalPrice(count, price);
+        calculateAveragePrice();
+        calculateAverageCheck();
+
     }
 
     public void clear() {
@@ -64,6 +108,9 @@ public class Basket {
 
     public int getTotalPrice() {
         return totalPrice;
+    }
+    public int getAmountProduct() {
+        return amountProduct;
     }
 
     public double getTotalWeight() {
