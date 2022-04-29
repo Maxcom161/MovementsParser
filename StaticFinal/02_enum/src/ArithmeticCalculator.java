@@ -9,7 +9,7 @@ public class ArithmeticCalculator {
         this.y = y;
     }
 
-    public double calculate(Operation actions) {
+    public double calculate(Operation actions) { //todo в случае ENUM значений придумываем в скобках ЛЮБУЮ переменную, вместо которой будем ставить ENUM значения
         if (actions == Operation.ADD) {
             return x + y;
         } else if (actions == Operation.SUBTRACT) {
