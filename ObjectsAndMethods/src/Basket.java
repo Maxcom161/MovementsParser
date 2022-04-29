@@ -14,6 +14,18 @@ public class Basket {
     private static double averageCheck = 0;
 
 
+    /* private static int timeout = getTimeout();
+
+        private static int getTimeout() { //todo ПРИМЕР СЛОЖНОЙ ЛОГИКИ В СТАТИЧЕСКОЙ ИНИЦИАЛИЗАЦИИ ПЕРЕМЕННОЙ (условный пример (код не работает))
+        int secondsInHour = 3600;
+        int hoursInDay = 24;
+        int daysInWeek = 7;
+        int daysInMonth = 30;
+        timeout = secondsInHour * hoursInDay * (Period.type == PeriodType.WEEK ? daysInWeek : daysInMonth);
+    } */
+
+
+
 
 
     public Basket() {
