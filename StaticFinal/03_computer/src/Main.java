@@ -1,7 +1,7 @@
 public class Main {
     public static void main(String[] args) {
 
-        Computer computer = new Computer("Russia", "Крым-наш!", new CPU(4.4, 8, 8800, 50),
+        Computer computer = new Computer("Russia", "Moscow Industrial", new CPU(4.4, 8, 8800, 50),
                 new RAM("DDR3", 16, 80), new InformationStorage(TypeInformationStorage.SDD, 800, 350),
                 new Screen(72, ScreenConnectionType.TN, 7600),
                 new Keyboard("MECHANIC", true, 800));
