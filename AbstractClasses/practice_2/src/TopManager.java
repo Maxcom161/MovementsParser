@@ -10,7 +10,6 @@ public class TopManager implements Employee {
         }
     }
 
-
     public String toString() {
         return Math.round(salary) + "";
     }

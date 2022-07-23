@@ -9,12 +9,9 @@ public class Main {
         int topManager = 10;
 
         System.out.println(company + "\n");
-
         company.addListEmployees(operator, manager, topManager); // add list Employees
-
         company.printListSalary(company.getTopSalaryStaff(15)); // print top salary
         company.printListSalary(company.getLowestSalaryStaff(30)); // print lowest salary
-
 
         for (int o = 0; o < operator / 2; o++) { //delete 50% Operators
             company.fire(company.getEmployees().get(o));
@@ -27,10 +24,8 @@ public class Main {
         }
 
         System.out.println("Удалено 50% сотрудников каждого класса");
-
         company.printListSalary(company.getTopSalaryStaff(15)); // print top salary
         company.printListSalary(company.getLowestSalaryStaff(30)); // print lowest salary
-
 
     }
 }

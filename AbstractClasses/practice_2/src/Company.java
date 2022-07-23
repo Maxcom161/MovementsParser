@@ -12,7 +12,7 @@ public class Company implements Comparator<Employee> {
 
     public Company(String name) {
         this.name = name;
-        employees = new ArrayList<Employee>();
+        employees = new ArrayList<>();
         income = (int) (Math.random() * ((13_000_000 - 8_000_000) + 1)) + 8_000_000;
     }
 
@@ -88,7 +88,6 @@ public class Company implements Comparator<Employee> {
         Collections.sort(sortList, comparator);
         return sortList;
     }
-
 
 
     @Override

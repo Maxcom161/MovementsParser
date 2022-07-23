@@ -6,7 +6,6 @@ public interface Employee {
     int REQUIRED_BONUS_AMOUNT = 10_000_000;
     int FIX_SALARY_TOP_MANAGER = 150000;
     int FIX_SALARY_OPERATOR = 75000;
-
     double getMonthSalary();
 
 }
