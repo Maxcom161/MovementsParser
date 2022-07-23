@@ -4,10 +4,6 @@ public class IndividualEntrepreneurClient extends Client {
             " если больше 1000 - 0,5%" + "\n" +
             "Списание происходит без комиссии";
 
-    @Override
-    public double getAmount() {
-        return super.getAmount();
-    }
 
     @Override
     public void put(double amount) {
@@ -18,10 +14,6 @@ public class IndividualEntrepreneurClient extends Client {
         }
     }
 
-    @Override
-    public void take(double amount) {
-        super.take(amount);
-    }
 
     @Override
     public String getName() {

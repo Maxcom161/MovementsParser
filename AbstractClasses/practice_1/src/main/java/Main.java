@@ -9,7 +9,7 @@ public class Main {
         physicalPersonClient.take(123);
 
         companyClient.put(2000);
-        companyClient.take(1000);
+        companyClient.take(1500);
 
         individualEntrepreneurClient.put(10000);
         individualEntrepreneurClient.take(900);

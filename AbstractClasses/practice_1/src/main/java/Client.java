@@ -3,6 +3,7 @@ public abstract class Client {
     protected double amountOfMoney;
 
     public double getAmount() {
+
         return amountOfMoney;
     }
 
