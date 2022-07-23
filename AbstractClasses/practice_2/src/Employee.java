@@ -7,8 +7,6 @@ public interface Employee {
     int FIX_SALARY_TOP_MANAGER = 150000;
     int FIX_SALARY_OPERATOR = 75000;
 
-
     double getMonthSalary();
-
 
 }

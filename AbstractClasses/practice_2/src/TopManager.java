@@ -2,9 +2,12 @@ public class TopManager implements Employee {
 
     private double salary;
 
-
     public TopManager() {
-        salary = getMonthSalary();
+        if (Company.getIncome() > REQUIRED_BONUS_AMOUNT) {
+            this.salary = FIX_SALARY_TOP_MANAGER + (FIX_SALARY_TOP_MANAGER * 1.5);
+        } else {
+            this.salary = FIX_SALARY_TOP_MANAGER;
+        }
     }
 
 
@@ -14,11 +17,7 @@ public class TopManager implements Employee {
 
     @Override
     public double getMonthSalary() {
-        if (Company.getIncome() > REQUIRED_BONUS_AMOUNT) {
-            salary = FIX_SALARY_TOP_MANAGER + (FIX_SALARY_TOP_MANAGER * 1.5);
-        } else {
-            salary = FIX_SALARY_TOP_MANAGER;
-        }
         return salary;
     }
+
 }

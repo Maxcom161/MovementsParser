@@ -12,7 +12,7 @@ public class Company implements Comparator<Employee> {
 
     public Company(String name) {
         this.name = name;
-        employees = new ArrayList<>();
+        employees = new ArrayList<Employee>();
         income = (int) (Math.random() * ((13_000_000 - 8_000_000) + 1)) + 8_000_000;
     }
 
@@ -40,12 +40,6 @@ public class Company implements Comparator<Employee> {
         return income;
     }
 
-    public ArrayList<Employee> sort() {
-        ArrayList<Employee> sort = new ArrayList<>(employees);
-        Collections.sort(sort, comparator);
-        return sort;
-    }
-
     public ArrayList <Employee> getTopSalaryStaff(int count) {
         ArrayList<Employee> listTopSalary = new ArrayList<>();
         System.out.println("Список из " + count +  " самых высоких окладов:");
@@ -59,13 +53,43 @@ public class Company implements Comparator<Employee> {
     public ArrayList<Employee> getLowestSalaryStaff(int count) {
         ArrayList<Employee> listLowSalary = new ArrayList<>();
         System.out.println("Список из " + count + " самых низких окладов:");
-        Collections.sort(listLowSalary, comparator);
+        Collections.sort(employees, comparator);
         for (int i = 0; i < count; i++) {
             listLowSalary.add(employees.get(i));
         }
 
-    return listLowSalary;
+        return listLowSalary;
     }
+
+    public void addListEmployees(int operator, int manager, int topManager) {
+        for (int o = 0; o < operator; o++) {
+            employees.add(new Operator());
+        }
+        for (int m = 0; m < manager; m++) {
+            employees.add(new Manager());
+        }
+        for (int t = 0; t < topManager; t++) {
+            employees.add(new TopManager());
+        }
+    }
+
+    public void printListSalary(ArrayList<Employee> employees) {
+        for (Employee salary : employees) {
+            System.out.println(salary + " руб.");
+        }
+    }
+
+    public ArrayList<Employee> getEmployees() {
+        return employees;
+    }
+
+    public ArrayList<Employee> getSortList(ArrayList<Employee> employees) {
+        ArrayList<Employee> sortList = new ArrayList<>(employees);
+        Collections.sort(sortList, comparator);
+        return sortList;
+    }
+
+
 
     @Override
     public String toString() {

@@ -2,8 +2,10 @@ public class Operator implements Employee {
 
     private double salary;
 
+
     public Operator() {
-        salary = getMonthSalary();
+        this.salary = FIX_SALARY_OPERATOR;;
+
     }
 
     public String toString() {
@@ -13,7 +15,6 @@ public class Operator implements Employee {
 
     @Override
     public double getMonthSalary() {
-        salary = FIX_SALARY_OPERATOR;
         return salary;
     }
 }
