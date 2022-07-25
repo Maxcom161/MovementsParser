@@ -1,104 +1,84 @@
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 
-public class Company implements Comparator<Employee> {
+public class Company{
 
-    private ArrayList<Employee> employees;
-    private static int income;
+    private List<Employee> employees;
     private String name;
-    private int amountStaff;
 
     public Company(String name) {
         this.name = name;
         employees = new ArrayList<>();
-        income = (int) (Math.random() * ((13_000_000 - 8_000_000) + 1)) + 8_000_000;
     }
-
-    Comparator<Employee> comparator = new Comparator<Employee>() {
-        @Override
-        public int compare(Employee o1, Employee o2) {
-            return (int) (o1.getMonthSalary() - (int) o2.getMonthSalary());
-        }
-    };
 
     public void hire(Employee employee) {
         employees.add(employee);
     }
 
     public void hireAll(Collection<Employee> employes) {
-        employees.addAll(employes);
+        for (Employee employee : employes) {
+            hire(employee);
+        }
     }
 
     public void fire(Employee employee) {
         employees.remove(employee);
-
     }
 
-    public static int getIncome() {
+    public int getIncome() {
+        int income = 0; // делается для того, чтобы при вызови getIncome не суммировался постоянно income;
+        for (Employee employee : employees){
+            if(employee instanceof Manager){
+                income += ((Manager) employee).getSales();
+                //todo доход складывается от заработанных менеджерами денег. (getSales)
+            }
+        }
         return income;
     }
 
-    public ArrayList <Employee> getTopSalaryStaff(int count) {
-        ArrayList<Employee> listTopSalary = new ArrayList<>();
-        System.out.println("Список из " + count +  " самых высоких окладов:");
-        Collections.sort(employees, comparator.reversed());
-        for (int i = 0; i < count; i++) {
-            listTopSalary.add(employees.get(i));
-        }
-        return listTopSalary;
+    //todo так как везде есть компаратор, в этом методе для
+    //todo сортировки можно использовать встроенный компаратор.
+    public List<Employee> getTopSalaryStaff(int count) {
+        return getList(count, Comparator.reverseOrder());
     }
 
-    public ArrayList<Employee> getLowestSalaryStaff(int count) {
-        ArrayList<Employee> listLowSalary = new ArrayList<>();
-        System.out.println("Список из " + count + " самых низких окладов:");
-        Collections.sort(employees, comparator);
-        for (int i = 0; i < count; i++) {
-            listLowSalary.add(employees.get(i));
-        }
-
-        return listLowSalary;
+    public List<Employee> getLowestSalaryStaff(int count) {
+        return getList(count, Comparator.naturalOrder());
     }
 
-    public void addListEmployees(int operator, int manager, int topManager) {
-        for (int o = 0; o < operator; o++) {
-            employees.add(new Operator());
+    private List<Employee> getList (int count, Comparator cmp) {
+        if (count < 0) {
+            System.out.println("Перадано неверное значение!");
+            return Collections.emptyList(); //new ArrayList<>();
         }
-        for (int m = 0; m < manager; m++) {
-            employees.add(new Manager());
+        if (count > employees.size()) {
+            count = employees.size();
         }
-        for (int t = 0; t < topManager; t++) {
-            employees.add(new TopManager());
-        }
+        employees.sort(cmp);
+        return new ArrayList<>(employees.subList(0, count));
     }
 
-    public void printListSalary(ArrayList<Employee> employees) {
-        for (Employee salary : employees) {
-            System.out.println(salary + " руб.");
-        }
-    }
+//    public List<Employee> getTopSalaryStaff(int count) { // можно упростить еще больше.
+//        Collections.sort(employees);
+//        Collections.reverse(employees);
+//        return employees.subList(0, count);
+//    }
+//
+//    public List<Employee> getLowestSalaryStaff(int count) { // можно упростить еще больше.
+//      Collections.sort(employees);
+//      return employees.subList(0, count);
+//    }
 
-    public ArrayList<Employee> getEmployees() {
-        return employees;
-    }
-
-    public ArrayList<Employee> getSortList(ArrayList<Employee> employees) {
-        ArrayList<Employee> sortList = new ArrayList<>(employees);
-        Collections.sort(sortList, comparator);
-        return sortList;
+    public List<Employee> getEmployees() {
+        return new ArrayList<>(employees); // Защищаем список путем создания новой ссылки на объекты.
+        //todo в списке хранится ССЫЛКА на объект. В нашем случае объекты - одинаковый, но ссылки разные,
+        //todo засчет создания нового списка в геттере.
     }
 
 
     @Override
     public String toString() {
         return "Наименовании организации: " + "\"" + name + "\"" + "\n" +
-                "Доход компании: " + income + " руб." + "\n" +
+                "Доход компании: " + getIncome() + " руб." + "\n" +
                 "Количество сотрудников: " + employees.size();
-    }
-
-    @Override
-    public int compare(Employee o1, Employee o2) {
-        return (int) (o1.getMonthSalary() - o2.getMonthSalary());
     }
 }

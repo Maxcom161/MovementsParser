@@ -1,17 +1,15 @@
 public class TopManager implements Employee {
 
     private double salary;
+    private Company company; // делается для того, чтобы получить доступ к income;
 
-    public TopManager() {
-        if (Company.getIncome() > REQUIRED_BONUS_AMOUNT) {
-            this.salary = FIX_SALARY_TOP_MANAGER + (FIX_SALARY_TOP_MANAGER * 1.5);
+    public TopManager(Company company) {
+        this.company = company;
+        if (company.getIncome() > REQUIRED_BONUS_AMOUNT) {
+            salary = FIX_SALARY_TOP_MANAGER * 1.5;
         } else {
-            this.salary = FIX_SALARY_TOP_MANAGER;
+            salary = FIX_SALARY_TOP_MANAGER;
         }
-    }
-
-    public String toString() {
-        return Math.round(salary) + "";
     }
 
     @Override
