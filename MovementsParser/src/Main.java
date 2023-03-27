@@ -10,8 +10,6 @@ public class Main {
     public static void main(String[] args) {
 
         String path = "data/movementList.csv";
-        String regex = "[^a-zA-Z0-9]([a-zA-Z0-9\\s]+)[0-9]{2}\\.[0-9]{2}\\.[0-9]{2}" +
-                "\\s[0-9]{2}\\.[0-9]{2}\\.[0-9]{2}";
         HashMap<String, Double> list = new HashMap<>();
 
         try {
@@ -23,10 +21,7 @@ public class Main {
                 if (components.length != 8) {
                     continue;
                 }
-                String result = components[5];
-                Pattern pattern = Pattern.compile(regex);
-                Matcher matcher = pattern.matcher(result);
-                result = matcher.find() ? matcher.group(1).trim() : "";
+                String result = getParsePaymentType(components[5]);
                 if (list.containsKey(result)) {
                     list.put(result, list.get(result) + Double.valueOf(components[7]));
                     continue;
@@ -40,5 +35,13 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+    private static String getParsePaymentType(String informationOfPayment) {
+        String regex = "[^a-zA-Z0-9]([a-zA-Z0-9\\s]+)[0-9]{2}\\.[0-9]{2}\\.[0-9]{2}" +
+                "\\s[0-9]{2}\\.[0-9]{2}\\.[0-9]{2}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(informationOfPayment);
+        return matcher.find() ? matcher.group(1).trim() : "";
     }
 }
