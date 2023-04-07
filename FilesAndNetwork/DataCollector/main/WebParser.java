@@ -37,14 +37,12 @@ public class WebParser {
         Document document = getHtmlCode();
         JSONObject rootObj = new JSONObject();
         LinkedHashMap <String, JSONArray> buffer = new LinkedHashMap<>();
-        JSONArray listLine = new JSONArray();
-
-
-
+        JSONArray allLine = new JSONArray();
+        
         for (Element infoLine : document.select(".js-depend")) {
 
-            List<MetroStation> listNameStation = new ArrayList<>();
-            JSONArray listSt = new JSONArray();
+            List<MetroStation> listStation = new ArrayList<>();
+            JSONArray allStationOnTheLine = new JSONArray();
 
             String numberLine = infoLine.attr("data-depend-set").substring(6);
             String nameLine = document.getElementsByAttributeValue("data-line", numberLine).get(0).text();
@@ -54,21 +52,22 @@ public class WebParser {
             JSONObject object = new JSONObject();
             object.put("number", numberLine);
             object.put("name", nameLine);
-            listLine.add(object);
+            allLine.add(object);
 
             for (Element station : infoLine.select(".single-station")) {
                 // КЛЮЧЕВАЯ СТРОКА КОДА. Ищем станции именно по 1, 2, 3, ..., 17 элементу(линии);
                 MetroStation metroStation = new MetroStation(station.text(), metroLine);
-                listNameStation.add(metroStation);
-                listSt.add(metroStation.getName());
+                listStation.add(metroStation);
+                allStationOnTheLine.add(metroStation.getName());
             }
-            metroLine.addListStation(listNameStation);
+            metroLine.addListStation(listStation);
             listLines.put(numberLine, metroLine);
-            buffer.put(numberLine, listSt);
+
+            buffer.put(numberLine, allStationOnTheLine);
 
         }
         rootObj.put("stations", buffer);
-        rootObj.put("lines", listLine);
+        rootObj.put("lines", allLine);
 
         try(FileOutputStream output = new FileOutputStream(path))
         {
