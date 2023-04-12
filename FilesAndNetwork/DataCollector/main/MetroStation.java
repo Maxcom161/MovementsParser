@@ -1,9 +1,9 @@
-import java.util.TreeSet;
+public class MetroStation implements Comparable<MetroStation> {
 
-public class MetroStation {
-
-    private String name;
-    private MetroLine metroLine;
+    private final String name;
+    private final MetroLine metroLine;
+    private String depth;
+    private String openingDate;
 
 
     public MetroStation(String name, MetroLine metroLine) {
@@ -19,8 +19,43 @@ public class MetroStation {
         return metroLine;
     }
 
+    public void setDepth(String depth) {
+        this.depth = depth;
+    }
+
+    public String getDepth() {
+        return depth;
+    }
+
+    public void setOpeningDate(String openingDate) {
+        this.openingDate = openingDate;
+    }
+
+
+    public String getOpeningDate() {
+        return openingDate;
+    }
+
+
+
     @Override
     public String toString() {
-        return name;
+
+        return name + " " + depth + " " + openingDate;
     }
+
+    @Override
+    public int compareTo(MetroStation metroStation) {
+        return name.compareToIgnoreCase(metroStation.getName());
+    }
+    @Override
+    public boolean equals(Object obj)
+    {
+        return compareTo((MetroStation) obj) == 0;
+    }
+
+
+
+
+
 }

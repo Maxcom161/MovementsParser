@@ -3,7 +3,7 @@ import org.json.simple.JSONArray;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MetroLine {
+public class MetroLine implements Comparable<MetroLine>{
 
     private String name;
     private String numberLine;
@@ -46,7 +46,17 @@ public class MetroLine {
 
         @Override
     public String toString() {
-        return " - " + name + ":" + "\n" + getStringListStation();
+        return " - " + name + ":" + "\n";
     }
 
+
+    @Override
+    public int compareTo(MetroLine o) {
+        return 0;
+    }
+    @Override
+    public boolean equals(Object obj)
+    {
+        return compareTo((MetroLine) obj) == 0;
+    }
 }
