@@ -4,6 +4,7 @@ public class MetroStation implements Comparable<MetroStation> {
     private final MetroLine metroLine;
     private String depth;
     private String openingDate;
+    private boolean hasConnection = false;
 
 
     public MetroStation(String name, MetroLine metroLine) {
@@ -31,17 +32,25 @@ public class MetroStation implements Comparable<MetroStation> {
         this.openingDate = openingDate;
     }
 
-
     public String getOpeningDate() {
         return openingDate;
     }
+
+    public boolean isHasConnection() {
+        return hasConnection;
+    }
+
+    public void setHasConnection(boolean hasConnection) {
+        this.hasConnection = hasConnection;
+    }
+
 
 
 
     @Override
     public String toString() {
 
-        return name + " " + depth + " " + openingDate;
+        return name + " " + depth + " " + openingDate + " " + hasConnection;
     }
 
     @Override

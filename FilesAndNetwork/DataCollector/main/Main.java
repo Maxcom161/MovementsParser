@@ -1,7 +1,14 @@
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import javax.swing.text.AbstractDocument;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.TreeSet;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -16,6 +23,17 @@ public class Main {
         System.out.println(csvParce.getListStations().size() + " -   Количество станций после работы класса CSV");
         System.out.println(csvParce.getListStations() + " -   Список объектов после установления даты открытия");
         System.out.println(csvParce.getFlaq() + " -  Количество новых станций созданных в классе CSV");
+
+        CreateJsonFiles createJsonFiles = new CreateJsonFiles();
+        System.out.println(createJsonFiles);
+        System.out.println(createJsonFiles.getJsonStation());
+
+        createJsonFiles.parceSkillboxFormat();
+        createJsonFiles.parceSPBFormat();
+
+        //todo НАДО СДЕЛАТЬ ЕДИНЫЙ СПИСОК СТАНЦИЙ, ЧТОБЫ ВСЕ ПРЕОБРАЗОВАНИЯ БЫЛИ ТОЛЬКО В НЕМ
+
+
 
 
     }
